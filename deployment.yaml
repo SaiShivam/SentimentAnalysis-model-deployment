@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tf-deployment
+  labels:
+    app: tf-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: tf-app-pod
+      app: tf-app
+  template:
+    metadata:
+      name: tf-app-pod
+      labels:
+        name: tf-app-pod
+        app: tf-app
+    spec:
+      containers:
+        - name: tf-container
+          image: saishivam/sentimentanalysis-tf
+          ports:
+          - containerPort: 80
